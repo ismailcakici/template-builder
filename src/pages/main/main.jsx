@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { iconList } from "../../constants/responsive-icon-list";
 import logo from "../../assets/icons/logo-sm.png";
 import Accordion from "../../components/accordion/accordion";
-import { componentConstants } from "../../constants/components/component-constants";
+import { componentConstants } from "../../constants/components-constants/component-constants";
 import { devicePorts } from "../../constants/device-ports";
+import { usePortContext } from "../../context/port-context";
 
 const Main = () => {
-  // Responsive States
-  const [selectedPort, setSelectedPort] = useState(getSelectedPort());
+  // Port Context -  Responsive States
+  const { selectedPort, setSelectedPort } = usePortContext(getSelectedPort());
+
   // Selector States
   const [selectedHeader, setSelectedHeader] = useState(null);
   const [selectedFooter, setSelectedFooter] = useState(null);
@@ -48,7 +50,7 @@ const Main = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [setSelectedPort]);
 
   return (
     <div className="h-screen grid grid-cols-[0%,100%] md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] ">

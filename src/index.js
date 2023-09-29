@@ -3,9 +3,12 @@ import React from "react";
 import routes from "./routes/routes";
 import "./assets/css/tailwind.css";
 import { RouterProvider } from "react-router-dom";
+import { PortProvider } from "./context/port-context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={routes} />
+    <PortProvider>
+      <RouterProvider router={routes} />
+    </PortProvider>
   </React.StrictMode>
 );
