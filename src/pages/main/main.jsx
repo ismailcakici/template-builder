@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { iconList } from "../../constants/responsive-icon-list";
 import logo from "../../assets/icons/logo-sm.png";
 import Accordion from "../../components/accordion/accordion";
 import { componentConstants } from "../../constants/components/component-constants";
+import { devicePorts } from "../../constants/device-ports";
 
 const Main = () => {
+  // Responsive States
+  const [selectedPort, setSelectedPort] = useState(getSelectedPort());
+  // Selector States
   const [selectedHeader, setSelectedHeader] = useState(null);
   const [selectedFooter, setSelectedFooter] = useState(null);
 
+  // Change selector states
   const handleSelectedHeader = (header) => {
     setSelectedHeader(header);
   };
@@ -15,6 +20,35 @@ const Main = () => {
   const handleSelectedFooter = (footer) => {
     setSelectedFooter(footer);
   };
+
+  // Change devicePort state
+  const handleSetSelectedPort = (port) => {
+    setSelectedPort(port);
+  };
+
+  // Function to get the selected port based on window width
+  function getSelectedPort() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth >= 1500) {
+      return devicePorts[0];
+    } else if (windowWidth >= 1200) {
+      return devicePorts[1];
+    } else {
+      return devicePorts[2];
+    }
+  }
+
+  // Event listener to update selectedPort when window is resized
+  useEffect(() => {
+    function handleResize() {
+      setSelectedPort(getSelectedPort());
+    }
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="h-screen grid grid-cols-[0%,100%] md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] ">
@@ -33,6 +67,7 @@ const Main = () => {
               <Accordion
                 title={item.title}
                 open={itemIdx === 0 ? true : false}
+                // Pass content to accordion
                 content={
                   <div className="flex flex-row flex-wrap gap-3 justify-center items-center p-4">
                     {item.titles.map((title, titleIdx) => {
@@ -73,17 +108,36 @@ const Main = () => {
         <div className="min-w-full h-20 bg-white rounded-md shadow-sm flex flex-row justify-center items-center gap-10">
           {iconList.map((icon, idx) => {
             return (
-              <img
-                className="w-12 h-auto cursor-pointer transition-transform hover:scale-110"
-                src={icon}
-                alt={"ic-" + icon}
+              <div
+                className={`bg-white-10 rounded-md overflow-hidden p-2 drop-shadow-lg ${
+                  selectedPort === devicePorts[idx] && "border-dotted border-2 border-grey-50"
+                }`}
                 key={idx}
-              />
+              >
+                <img
+                  className={`w-12 h-auto cursor-pointer transition-transform ${
+                    selectedPort === devicePorts[idx] ? "hover:scale-100" : "hover:scale-110"
+                  }`}
+                  src={icon}
+                  alt={"ic-" + icon}
+                  onClick={() => {
+                    handleSetSelectedPort(devicePorts[idx]);
+                  }}
+                />
+              </div>
             );
           })}
         </div>
         {/* Template Display */}
-        <div className="max-w-full min-h-screen max-h-full rounded-md border-2 border-grey-50 border-dotted my-3">
+        <div
+          className={`max-w-full min-h-screen max-h-full rounded-md border-2 m-auto border-grey-50 border-dotted my-3 ${
+            selectedPort === "tablet"
+              ? "w-[900px]"
+              : selectedPort === "mobile"
+              ? "w-[400px]"
+              : "w-auto"
+          }`}
+        >
           {/* Header */}
           {selectedHeader}
           {/* Footer */}
