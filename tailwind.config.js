@@ -16,6 +16,7 @@ module.exports = {
       "danger-50": "#EA8A7C",
       "danger-30": "#B7250F",
       "danger-10": "#74180A",
+      "white-10": "#EEEDED",
       white: "#FFFFFF",
       black: "#111111",
     },
