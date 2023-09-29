@@ -6,7 +6,7 @@ const Main = () => {
       {/* Selectors */}
       <div className="min-h-screen shadow-inner"></div>
       {/* Display */}
-      <div className="min-h-scree bg-white-10"></div>
+      <div className="min-h-screen bg-white-10"></div>
     </div>
   );
 };
