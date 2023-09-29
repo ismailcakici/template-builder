@@ -1,6 +1,7 @@
 import React from "react";
 import { iconList } from "../../constants/responsive-icon-list";
 import logo from "../../assets/icons/logo-sm.png";
+import Accordion from "../../components/accordion/accordion";
 
 const Main = () => {
   return (
@@ -10,7 +11,11 @@ const Main = () => {
         {/* Logo and Title */}
         <div className="h-20 w-full flex flex-row justify-center items-center gap-5">
           <img className="w-16 h-auto grayscale" src={logo} alt="ic-logo" />
-          <h1 className="font-sans text-xl text-center text-grey-0">Kigen Template Builder</h1>
+          <h1 className="font-semibold text-xl text-center text-grey-0">Kigen Template Builder</h1>
+        </div>
+        <div className="w-full h-full">
+          <Accordion title={"Headers"} open={true} />
+          <Accordion title={"Footers"} open={false} />
         </div>
       </div>
       {/* Display */}
