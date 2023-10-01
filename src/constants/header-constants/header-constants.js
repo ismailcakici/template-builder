@@ -1,1 +1,1 @@
-export const headerConstants = ["Home", "About Us", "Contact", "F.A.Q"];
+export const headerConstants = ["Home", "Shop", "Gallery", "About Us", "Contact", "F.A.Q"];

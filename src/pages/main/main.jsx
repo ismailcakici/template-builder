@@ -134,10 +134,10 @@ const Main = () => {
         <div
           className={`max-w-full min-h-screen max-h-full rounded-md border-2 m-auto border-grey-50 border-dotted my-3 ${
             selectedPort === "tablet"
-              ? "w-[900px]"
+              ? "w-[900px] min-h-[800px]"
               : selectedPort === "mobile"
-              ? "w-[400px]"
-              : "w-auto"
+              ? "w-[400px] min-h-[800px]"
+              : "w-auto min-h-[800px]"
           }`}
         >
           {/* Header */}
