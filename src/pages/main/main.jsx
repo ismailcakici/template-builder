@@ -55,7 +55,7 @@ const Main = () => {
   return (
     <div className="h-screen grid grid-cols-[0%,100%] md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] ">
       {/* Selectors */}
-      <div className="shadow-inner p-2">
+      <div className="shadow-2xl p-2">
         {/* Logo and Title */}
         <div className="h-20 w-full flex flex-row justify-center items-center gap-5">
           <img className="w-16 h-auto grayscale" src={logo} alt="ic-logo" />
@@ -75,7 +75,7 @@ const Main = () => {
                     {item.titles.map((title, titleIdx) => {
                       return (
                         <div
-                          className="w-16 h-16 rounded-md shadow-lg bg-white grid items-center transition-shadow hover:cursor-pointer hover:drop-shadow-xl"
+                          className="rounded-md shadow-lg bg-white grid items-center transition-shadow hover:cursor-pointer hover:drop-shadow-xl"
                           key={titleIdx}
                           // Switching component states as user's changes
                           onClick={() => {
@@ -92,7 +92,7 @@ const Main = () => {
                             }
                           }}
                         >
-                          <p className="text-3xl text-grey-0 font-bold text-center">{title}</p>
+                          <img src={item.images[titleIdx]} alt="component-img" />
                         </div>
                       );
                     })}
@@ -132,12 +132,12 @@ const Main = () => {
         </div>
         {/* Template Display */}
         <div
-          className={`max-w-full min-h-screen max-h-full rounded-md border-2 m-auto border-grey-50 border-dotted my-3 ${
+          className={`max-w-full h-[800px] rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
             selectedPort === "tablet"
-              ? "w-[900px] min-h-[800px]"
+              ? "w-[900px]"
               : selectedPort === "mobile"
-              ? "w-[400px] min-h-[800px]"
-              : "w-auto min-h-[800px]"
+              ? "w-[400px]"
+              : "w-auto"
           }`}
         >
           {/* Header */}

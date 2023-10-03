@@ -70,14 +70,15 @@ const H1 = () => {
         }`}
       >
         <ul
-          className={`flex flex-row justify-around items-center font-semibold gap-3 ${
-            menuActive &&
-            "absolute left-[-47px] top-8 px-20 py-40 gap-12 flex-col text-center bg-white"
-          }`}
+          className={
+            !menuActive
+              ? "flex flex-row justify-around items-center font-semibold gap-3"
+              : "absolute max-h-[730px] left-[-47px] top-8 px-20 py-40 flex flex-col text-center bg-white font-semibold gap-14"
+          }
         >
           {headerConstants.map((title, idx) => {
             return (
-              <li className="cursor-pointer hover:text-grey-50" key={idx}>
+              <li className="cursor-pointer  hover:text-grey-50" key={idx}>
                 {title}
               </li>
             );
