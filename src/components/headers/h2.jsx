@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/icons/logo-sm.png";
-import { usePortContext } from "../../context/port-context";
-import { headerConstants } from "../../constants/header-constants/header-constants";
+import { usePortContext } from "../../context/port_context";
+import { headerConstants } from "../../constants/header-constants/header_constants";
 
 const H2 = () => {
   // get device port value

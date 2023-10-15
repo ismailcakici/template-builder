@@ -9,6 +9,12 @@ import H1Img from "../../assets/components/header/H1.png";
 import H2Img from "../../assets/components/header/H2.png";
 import H3Img from "../../assets/components/header/H3.png";
 
+// Home Pages
+
+import HP1 from "../../components/home-pages/hp1";
+import HP2 from "../../components/home-pages/hp2";
+import HP3 from "../../components/home-pages/hp3";
+
 // Footers
 import F1 from "../../components/footers/f1";
 import F2 from "../../components/footers/f2";
@@ -21,6 +27,12 @@ export const componentConstants = [
     titles: ["H1", "H2", "H3"],
     images: [H1Img, H2Img, H3Img],
     components: [<H1 />, <H2 />, <H3 />],
+  },
+  {
+    title: "Home Pages",
+    titles: ["HP1", "HP2", "HP3"],
+    images: [],
+    components: [<HP1 />, <HP2 />, <HP3 />],
   },
   {
     title: "Footers",

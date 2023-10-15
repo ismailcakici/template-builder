@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { iconList } from "../../constants/responsive-icon-list";
+import { iconList } from "../../constants/responsive_icon_list";
 import logo from "../../assets/icons/logo-sm.png";
 import Accordion from "../../components/accordion/accordion";
-import { componentConstants } from "../../constants/components-constants/component-constants";
-import { devicePorts } from "../../constants/device-ports";
-import { usePortContext } from "../../context/port-context";
+import { componentConstants } from "../../constants/components-constants/component_constants";
+import { devicePorts } from "../../constants/device_ports";
+import { usePortContext } from "../../context/port_context";
 
 const Main = () => {
   // Port Context -  Responsive States
@@ -12,11 +12,16 @@ const Main = () => {
 
   // Selector States
   const [selectedHeader, setSelectedHeader] = useState(null);
+  const [selectedHomePage, setSelectedHomePage] = useState(null);
   const [selectedFooter, setSelectedFooter] = useState(null);
 
   // Change selector states
   const handleSelectedHeader = (header) => {
     setSelectedHeader(header);
+  };
+
+  const handleSelectedHomePage = (homePage) => {
+    setSelectedHomePage(homePage);
   };
 
   const handleSelectedFooter = (footer) => {
@@ -85,6 +90,9 @@ const Main = () => {
                                 break;
 
                               case 1:
+                                handleSelectedHomePage(item.components[titleIdx]);
+                                break;
+                              case 2:
                                 handleSelectedFooter(item.components[titleIdx]);
                                 break;
                               default:
@@ -92,7 +100,7 @@ const Main = () => {
                             }
                           }}
                         >
-                          <img src={item.images[titleIdx]} alt="component-img" />
+                          <img src={item.images[titleIdx]} alt={item.titles[titleIdx]} />
                         </div>
                       );
                     })}
@@ -132,7 +140,7 @@ const Main = () => {
         </div>
         {/* Template Display */}
         <div
-          className={`max-w-full h-[800px] rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
+          className={`max-w-full min-h-[800px] max-h-full rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
             selectedPort === "tablet"
               ? "w-[900px]"
               : selectedPort === "mobile"
@@ -142,6 +150,8 @@ const Main = () => {
         >
           {/* Header */}
           {selectedHeader}
+          {/* Home Page */}
+          {selectedHomePage}
           {/* Footer */}
           {selectedFooter}
         </div>

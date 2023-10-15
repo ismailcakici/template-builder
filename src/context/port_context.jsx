@@ -7,7 +7,8 @@ export const usePortContext = () => {
 };
 
 export const PortProvider = ({ children }) => {
-  const [selectedPort, setSelectedPort] = useState("desktop"); // Varsayılan değer
+  // Default Value
+  const [selectedPort, setSelectedPort] = useState("desktop");
 
   return (
     <PortContext.Provider value={{ selectedPort, setSelectedPort }}>
