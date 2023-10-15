@@ -73,7 +73,7 @@ const H1 = () => {
           className={
             !menuActive
               ? "flex flex-row justify-around items-center font-semibold gap-3"
-              : "absolute max-h-[730px] left-[-47px] top-8 px-20 py-40 flex flex-col text-center bg-white font-semibold gap-14"
+              : "absolute max-h-[730px] left-[-48px] top-8 px-20 py-40 flex flex-col text-center bg-white font-semibold gap-14 z-10"
           }
         >
           {headerConstants.map((title, idx) => {

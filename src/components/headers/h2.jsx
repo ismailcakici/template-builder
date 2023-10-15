@@ -81,7 +81,7 @@ const H2 = () => {
       {/* Mobile Menu */}
       {selectedPort === "mobile" && menuActive && (
         <div className="relative">
-          <ul className="absolute max-h-[730px] left-[-47px] top-8 px-20 py-40 gap-14 flex flex-col text-center bg-white font-semibold">
+          <ul className="absolute max-h-[730px] left-[-48px] top-8 px-20 py-40 gap-14 flex flex-col text-center bg-white font-semibold z-10">
             {headerConstants.map((title, idx) => (
               <li className="cursor-pointer hover:text-grey-50" key={idx}>
                 {title}

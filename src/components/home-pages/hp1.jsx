@@ -26,7 +26,11 @@ const HP1 = () => {
         >
           Your Slogan Here
         </span>
-        <button className="self-center w-36 h-16 bg-white-10 shadow-lg rounded-md my-5 font-semibold transition-all hover:bg-grey-0 hover:text-white-10">
+        <button
+          className={`self-center  bg-white-10 shadow-lg rounded-md my-5 font-semibold transition-all hover:bg-grey-0 hover:text-white-10 ${
+            selectedPort === "mobile" ? "w-32 h-12" : "w-36 h-16"
+          }`}
+        >
           Explore
         </button>
       </div>
