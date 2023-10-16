@@ -21,6 +21,16 @@ import HP1Img from "../../assets/components/home-pages/HP1.png";
 import HP2Img from "../../assets/components/home-pages/HP2.png";
 import HP3Img from "../../assets/components/home-pages/HP3.png";
 
+// Pricings
+
+import P1 from "../../components/pricing/p1";
+import P2 from "../../components/pricing/p2";
+
+// Pricing Images
+
+import P1Img from "../../assets/components/pricing/P1.png";
+import P2Img from "../../assets/components/pricing/P2.png";
+
 // Footers
 import F1 from "../../components/footers/f1";
 import F2 from "../../components/footers/f2";
@@ -39,6 +49,12 @@ export const componentConstants = [
     titles: ["HP1", "HP2", "HP3"],
     images: [HP1Img, HP2Img, HP3Img],
     components: [<HP1 />, <HP2 />, <HP3 />],
+  },
+  {
+    title: "Pricings",
+    titles: ["P1", "P2"],
+    images: [P1Img, P2Img],
+    components: [<P1 />, <P2 />],
   },
   {
     title: "Footers",

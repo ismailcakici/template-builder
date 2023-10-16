@@ -13,6 +13,7 @@ const Main = () => {
   // Selector States
   const [selectedHeader, setSelectedHeader] = useState(null);
   const [selectedHomePage, setSelectedHomePage] = useState(null);
+  const [selectedPricing, setSelectedPricing] = useState(null);
   const [selectedFooter, setSelectedFooter] = useState(null);
 
   // Change selector states
@@ -26,6 +27,10 @@ const Main = () => {
 
   const handleSelectedFooter = (footer) => {
     setSelectedFooter(footer);
+  };
+
+  const handleSelectedPricing = (pricing) => {
+    setSelectedPricing(pricing);
   };
 
   // Change devicePort state
@@ -88,11 +93,13 @@ const Main = () => {
                               case 0:
                                 handleSelectedHeader(item.components[titleIdx]);
                                 break;
-
                               case 1:
                                 handleSelectedHomePage(item.components[titleIdx]);
                                 break;
                               case 2:
+                                handleSelectedPricing(item.components[titleIdx]);
+                                break;
+                              case 3:
                                 handleSelectedFooter(item.components[titleIdx]);
                                 break;
                               default:
@@ -140,7 +147,7 @@ const Main = () => {
         </div>
         {/* Template Display */}
         <div
-          className={`max-w-full min-h-[800px] max-h-full rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
+          className={`max-w-full h-[800px] overflow-auto rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
             selectedPort === "tablet"
               ? "w-[900px]"
               : selectedPort === "mobile"
@@ -152,6 +159,8 @@ const Main = () => {
           {selectedHeader}
           {/* Home Page */}
           {selectedHomePage}
+          {/* Pricing */}
+          {selectedPricing}
           {/* Footer */}
           {selectedFooter}
         </div>

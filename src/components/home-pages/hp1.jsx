@@ -1,6 +1,6 @@
 import React from "react";
 import { usePortContext } from "../../context/port_context";
-import { homePageBgImg } from "../../constants/home-page-constants/home_page_constants";
+import homePageBgImg from "../../assets/images/background2.jpg";
 
 const HP1 = () => {
   // get device port value
@@ -45,7 +45,7 @@ const HP1 = () => {
       </div>
       {/* img container */}
       <div className="w-[500px] h-[300px] rounded-md p-1">
-        <img className="rounded-md" src={homePageBgImg} alt="your-img" />
+        <img className="rounded-md grayscale" src={homePageBgImg} alt="your-img" />
       </div>
     </div>
   );
