@@ -15,6 +15,7 @@ const Main = () => {
   const [selectedHomePage, setSelectedHomePage] = useState(null);
   const [selectedPricing, setSelectedPricing] = useState(null);
   const [selectedFooter, setSelectedFooter] = useState(null);
+  const [selectedAboutUs, setSelectedAboutUs] = useState(null);
 
   // Change selector states
   const handleSelectedHeader = (header) => {
@@ -31,6 +32,10 @@ const Main = () => {
 
   const handleSelectedPricing = (pricing) => {
     setSelectedPricing(pricing);
+  };
+
+  const handleSelectedAboutUs = (aboutUs) => {
+    setSelectedAboutUs(aboutUs);
   };
 
   // Change devicePort state
@@ -63,9 +68,9 @@ const Main = () => {
   }, [setSelectedPort]);
 
   return (
-    <div className="h-screen grid grid-cols-[0%,100%] md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] ">
+    <div className="h-screen grid grid-cols-[0%,100%] md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] overflow-hidden ">
       {/* Selectors */}
-      <div className="shadow-2xl p-2">
+      <div className="shadow-2xl overflow-y-auto p-2">
         {/* Logo and Title */}
         <div className="h-20 w-full flex flex-row justify-center items-center gap-5">
           <img className="w-16 h-auto grayscale" src={logo} alt="ic-logo" />
@@ -100,6 +105,9 @@ const Main = () => {
                                 handleSelectedPricing(item.components[titleIdx]);
                                 break;
                               case 3:
+                                handleSelectedAboutUs(item.components[titleIdx]);
+                                break;
+                              case 4:
                                 handleSelectedFooter(item.components[titleIdx]);
                                 break;
                               default:
@@ -161,6 +169,8 @@ const Main = () => {
           {selectedHomePage}
           {/* Pricing */}
           {selectedPricing}
+          {/* About Us */}
+          {selectedAboutUs}
           {/* Footer */}
           {selectedFooter}
         </div>

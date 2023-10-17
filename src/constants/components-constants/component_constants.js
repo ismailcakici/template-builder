@@ -31,6 +31,12 @@ import P2 from "../../components/pricing/p2";
 import P1Img from "../../assets/components/pricing/P1.png";
 import P2Img from "../../assets/components/pricing/P2.png";
 
+// About Us
+import AU1 from "../../components/about-us/au1";
+import AU2 from "../../components/about-us/au2";
+
+// About Us Images
+
 // Footers
 import F1 from "../../components/footers/f1";
 import F2 from "../../components/footers/f2";
@@ -51,10 +57,16 @@ export const componentConstants = [
     components: [<HP1 />, <HP2 />, <HP3 />],
   },
   {
-    title: "Pricings",
+    title: "Pricing",
     titles: ["P1", "P2"],
     images: [P1Img, P2Img],
     components: [<P1 />, <P2 />],
+  },
+  {
+    title: "About Us",
+    titles: ["AU1", "AU2"],
+    images: [],
+    components: [<AU1 />, <AU2 />],
   },
   {
     title: "Footers",
