@@ -27,7 +27,7 @@ const H3 = () => {
         selectedPort === "desktop"
           ? "justify-between"
           : selectedPort === "mobile"
-          ? "fixed w-[380px] justify-start px-4"
+          ? "fixed w-[395px] justify-start px-4"
           : "justify-center"
       }`}
     >

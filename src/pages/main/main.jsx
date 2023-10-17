@@ -155,7 +155,7 @@ const Main = () => {
         </div>
         {/* Template Display */}
         <div
-          className={`max-w-full h-[800px] overflow-auto rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
+          className={`max-w-full h-[800px] no-scrollbar overflow-y-auto rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
             selectedPort === "tablet"
               ? "w-[900px]"
               : selectedPort === "mobile"
