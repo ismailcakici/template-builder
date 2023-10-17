@@ -21,11 +21,11 @@ const H2 = () => {
   return (
     // header container
     <div
-      className={`bg-white w-full h-16 p-1 flex flex-row items-center shadow-xl px-16  ${
+      className={`bg-white w-full h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
         selectedPort === "desktop"
           ? "justify-between"
           : selectedPort === "mobile"
-          ? "justify-start px-4"
+          ? "fixed w-[380px] justify-start px-4"
           : "justify-evenly"
       }`}
     >
@@ -81,7 +81,7 @@ const H2 = () => {
       {/* Mobile Menu */}
       {selectedPort === "mobile" && menuActive && (
         <div className="relative">
-          <ul className="absolute max-h-[730px] left-[-48px] top-8 px-20 py-40 gap-14 flex flex-col text-center bg-white font-semibold z-10">
+          <ul className="absolute max-h-[732px] left-[-48px] top-8 px-20 py-40 gap-14 flex flex-col text-center bg-white font-semibold z-10">
             {headerConstants.map((title, idx) => (
               <li className="cursor-pointer hover:text-grey-50" key={idx}>
                 {title}
