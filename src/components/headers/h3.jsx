@@ -23,7 +23,7 @@ const H3 = () => {
   return (
     // header container
     <div
-      className={`bg-white w-full h-16 p-1 flex flex-row-reverse items-center shadow-xl px-16 z-10  ${
+      className={`bg-white h-16 p-1 flex flex-row-reverse items-center shadow-xl px-16 z-10  ${
         selectedPort === "desktop"
           ? "justify-between"
           : selectedPort === "mobile"
@@ -33,7 +33,7 @@ const H3 = () => {
     >
       {/* menu section */}
       <div
-        className={`flex flex-col gap-1 cursor-pointer ${
+        className={`fixed flex flex-col gap-1 cursor-pointer ${
           selectedPort === "mobile" ? "block" : "hidden"
         }`}
         onClick={handleSetMenuActive}
@@ -66,14 +66,14 @@ const H3 = () => {
       {/* navbar section */}
       <div
         className={`${selectedPort === "mobile" ? !menuActive && "hidden" : "block"} ${
-          menuActive && "relative"
+          menuActive && "fixed"
         }`}
       >
         <ul
           className={
             !menuActive
               ? "flex flex-row justify-around items-center font-semibold gap-3"
-              : "absolute max-h-[732px] left-[-168px] top-8 px-20 py-40 gap-14 flex flex-col text-center font-semibold bg-white z-10"
+              : "absolute max-h-[732px] left-[-200px] top-8 px-20 py-40 gap-14 flex flex-col text-center font-semibold bg-white"
           }
         >
           {headerConstants.map((title, idx) => {

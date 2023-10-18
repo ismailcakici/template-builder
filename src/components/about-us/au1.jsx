@@ -20,9 +20,8 @@ const AU1 = () => {
           About Us
         </h1>
         <p className="leading-10 text-white text-center font-semibold text-2xl ">
-          Welcome to [Firma Adı]! We are a passionate team dedicated to [sizin işletmenizin amacını
-          veya misyonunu ekleyin]. Our journey began with a simple yet powerful idea: to [sizin
-          işletmenizin kökenlerini veya nedenini ekleyin].
+          Welcome to [Your Title]! We are a passionate team dedicated to [Your company mission]. Our
+          journey began with a you.
         </p>
       </div>
     </div>

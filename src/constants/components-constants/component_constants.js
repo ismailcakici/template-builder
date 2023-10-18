@@ -37,6 +37,9 @@ import AU2 from "../../components/about-us/au2";
 
 // About Us Images
 
+// F.A.Q
+import FAQ1 from "../../components/f.a.q/faq1";
+
 // Footers
 import F1 from "../../components/footers/f1";
 import F2 from "../../components/footers/f2";
@@ -67,6 +70,12 @@ export const componentConstants = [
     titles: ["AU1", "AU2"],
     images: [],
     components: [<AU1 />, <AU2 />],
+  },
+  {
+    title: "F.A.Q",
+    titles: ["FAQ1"],
+    images: [],
+    components: [<FAQ1 />],
   },
   {
     title: "Footers",

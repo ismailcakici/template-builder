@@ -21,7 +21,7 @@ const H2 = () => {
   return (
     // header container
     <div
-      className={`bg-white w-full h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
+      className={`bg-white h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
         selectedPort === "desktop"
           ? "justify-between"
           : selectedPort === "mobile"
