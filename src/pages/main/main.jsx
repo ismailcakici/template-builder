@@ -16,6 +16,7 @@ const Main = () => {
   const [selectedPricing, setSelectedPricing] = useState(null);
   const [selectedFooter, setSelectedFooter] = useState(null);
   const [selectedFaq, setSelectedFaq] = useState(null);
+  const [selectedGallery, setSelectedGallery] = useState(null);
   const [selectedAboutUs, setSelectedAboutUs] = useState(null);
 
   // Change selector states
@@ -41,6 +42,10 @@ const Main = () => {
 
   const handleSelectedFaq = (faq) => {
     setSelectedFaq(faq);
+  };
+
+  const handleSelectedGallery = (gallery) => {
+    setSelectedGallery(gallery);
   };
 
   // Change devicePort state
@@ -116,6 +121,9 @@ const Main = () => {
                                 handleSelectedFaq(item.components[titleIdx]);
                                 break;
                               case 5:
+                                handleSelectedGallery(item.components[titleIdx]);
+                                break;
+                              case 6:
                                 handleSelectedFooter(item.components[titleIdx]);
                                 break;
                               default:
@@ -181,6 +189,8 @@ const Main = () => {
           {selectedAboutUs}
           {/* F.A.Q */}
           {selectedFaq}
+          {/* Gallery */}
+          {selectedGallery}
           {/* Footer */}
           {selectedFooter}
         </div>
