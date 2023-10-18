@@ -10,6 +10,7 @@ const FAQ1 = () => {
         {faqConstants.map((faq, idx) => {
           return (
             <Accordion
+              key={idx}
               title={faq.question}
               content={<p className="text-lg p-3">{faq.answer}</p>}
               open={idx === 0 && true}
