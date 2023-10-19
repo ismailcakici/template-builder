@@ -18,6 +18,7 @@ const Main = () => {
   const [selectedFaq, setSelectedFaq] = useState(null);
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [selectedAboutUs, setSelectedAboutUs] = useState(null);
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
 
   // Change selector states
   const handleSelectedHeader = (header) => {
@@ -46,6 +47,10 @@ const Main = () => {
 
   const handleSelectedGallery = (gallery) => {
     setSelectedGallery(gallery);
+  };
+
+  const handleSelectedTestimonial = (testimonial) => {
+    setSelectedTestimonial(testimonial);
   };
 
   // Change devicePort state
@@ -124,6 +129,9 @@ const Main = () => {
                                 handleSelectedGallery(item.components[titleIdx]);
                                 break;
                               case 6:
+                                handleSelectedTestimonial(item.components[titleIdx]);
+                                break;
+                              case 7:
                                 handleSelectedFooter(item.components[titleIdx]);
                                 break;
                               default:
@@ -191,6 +199,8 @@ const Main = () => {
           {selectedFaq}
           {/* Gallery */}
           {selectedGallery}
+          {/* Testimonials */}
+          {selectedTestimonial}
           {/* Footer */}
           {selectedFooter}
         </div>
