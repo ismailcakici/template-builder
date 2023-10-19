@@ -31,6 +31,7 @@ const HP2 = () => {
         >
           Your Slogan Here
         </span>
+        {/* btns container */}
         <div className="flex flex-row justify-around w-full gap-2">
           <button
             className={`self-center  bg-white-10 shadow-lg rounded-md my-5 font-semibold transition-all hover:bg-grey-0 hover:text-white-10 ${
