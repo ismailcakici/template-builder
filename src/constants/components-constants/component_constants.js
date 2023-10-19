@@ -52,6 +52,7 @@ import T2 from "../../components/testimonials/t2";
 
 // Testimonial Images
 import T1Img from "../../assets/components/testimonials/T1.png";
+import T2Img from "../../assets/components/gallery/G1.png";
 
 // Footers
 import F1 from "../../components/footers/f1";
@@ -99,7 +100,7 @@ export const componentConstants = [
   {
     title: "Testimonials",
     titles: ["T1", "T2"],
-    images: [T1Img],
+    images: [T1Img, T2Img],
     components: [<T1 />, <T2 />],
   },
   {
