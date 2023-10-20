@@ -42,9 +42,11 @@ import FAQ1Img from "../../assets/components/f.a.q/FAQ1.png";
 
 // Gallery
 import G1 from "../../components/gallery/g1";
+import G2 from "../../components/gallery/g2";
 
 // Gallery Images
 import G1Img from "../../assets/components/gallery/G1.png";
+import G2Img from "../../assets/components/gallery/G2.png";
 
 // Testimonials
 import T1 from "../../components/testimonials/t1";
@@ -97,9 +99,9 @@ export const componentConstants = [
   },
   {
     title: "Gallery",
-    titles: ["G1"],
-    images: [G1Img],
-    components: [<G1 />],
+    titles: ["G1", "G2"],
+    images: [G1Img, G2Img],
+    components: [<G1 />, <G2 />],
   },
   {
     title: "Testimonials",
