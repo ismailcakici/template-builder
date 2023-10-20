@@ -58,7 +58,11 @@ import T2Img from "../../assets/components/gallery/G1.png";
 import F1 from "../../components/footers/f1";
 import F2 from "../../components/footers/f2";
 import F3 from "../../components/footers/f3";
-import F4 from "../../components/footers/f4";
+
+// Fotter Images
+import F1Img from "../../assets/components/footer/F1.png";
+import F2Img from "../../assets/components/footer/F2.png";
+import F3Img from "../../assets/components/footer/F3.png";
 
 export const componentConstants = [
   {
@@ -105,8 +109,8 @@ export const componentConstants = [
   },
   {
     title: "Footers",
-    titles: ["F1", "F2", "F3", "F4"],
-    images: [],
-    components: [<F1 />, <F2 />, <F3 />, <F4 />],
+    titles: ["F1", "F2", "F3"],
+    images: [F1Img, F2Img, F3Img],
+    components: [<F1 />, <F2 />, <F3 />],
   },
 ];
