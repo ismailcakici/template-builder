@@ -4,22 +4,17 @@ import { usePortContext } from "../../context/port_context";
 import { headerConstants } from "../../constants/header-constants/header_constants";
 
 const H2 = () => {
-  // get device port value
   const { selectedPort } = usePortContext();
 
-  // menu state
   const [menuActive, setMenuActive] = useState(false);
 
-  // handle menu state
   const handleSetMenuActive = () => setMenuActive(!menuActive);
 
-  // handle menu state when port changes
   useEffect(() => {
     selectedPort !== "mobile" && setMenuActive(false);
   }, [selectedPort]);
 
   return (
-    // header container
     <div
       className={`bg-white h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
         selectedPort === "desktop"
@@ -29,7 +24,6 @@ const H2 = () => {
           : "justify-evenly"
       }`}
     >
-      {/* Left Section */}
       {selectedPort !== "mobile" && (
         <div className="flex items-center gap-4 font-semibold">
           {headerConstants.slice(0, 3).map((title, idx) => (
@@ -40,13 +34,11 @@ const H2 = () => {
         </div>
       )}
 
-      {/* Middle Section (Logo) */}
       <div className={`flex items-center gap-4 ${selectedPort === "mobile" && "hidden"}`}>
         <img className="w-12 h-12 grayscale cursor-pointer" src={logo} alt="ic-logo" />
         <p className="text-grey-0 font-semibold text-lg">LOGO</p>
       </div>
 
-      {/* Right Section */}
       {selectedPort !== "mobile" && (
         <div className="flex items-center gap-4 font-semibold">
           {headerConstants.slice(3).map((title, idx) => (
@@ -57,7 +49,6 @@ const H2 = () => {
         </div>
       )}
 
-      {/* Mobile Menu Icon */}
       {selectedPort === "mobile" && (
         <div className={`flex flex-col gap-1 cursor-pointer`} onClick={handleSetMenuActive}>
           <div
@@ -78,7 +69,6 @@ const H2 = () => {
         </div>
       )}
 
-      {/* Mobile Menu */}
       {selectedPort === "mobile" && menuActive && (
         <div className="relative">
           <ul className="absolute max-h-[732px] left-[-48px] top-8 px-20 py-40 gap-14 flex flex-col text-center bg-white font-semibold z-10">

@@ -7,10 +7,8 @@ import { devicePorts } from "../../constants/device_ports";
 import { usePortContext } from "../../context/port_context";
 
 const Main = () => {
-  // Port Context -  Responsive States
   const { selectedPort, setSelectedPort } = usePortContext(getSelectedPort());
 
-  // Selector States
   const [selectedHeader, setSelectedHeader] = useState(null);
   const [selectedHomePage, setSelectedHomePage] = useState(null);
   const [selectedPricing, setSelectedPricing] = useState(null);
@@ -20,7 +18,6 @@ const Main = () => {
   const [selectedAboutUs, setSelectedAboutUs] = useState(null);
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
 
-  // Change selector states
   const handleSelectedHeader = (header) => {
     setSelectedHeader(header);
   };
@@ -53,12 +50,10 @@ const Main = () => {
     setSelectedTestimonial(testimonial);
   };
 
-  // Change devicePort state
   const handleSetSelectedPort = (port) => {
     setSelectedPort(port);
   };
 
-  // Function to get the selected port based on window width
   function getSelectedPort() {
     const windowWidth = window.innerWidth;
     if (windowWidth >= 1500) {
@@ -70,7 +65,6 @@ const Main = () => {
     }
   }
 
-  // Event listener to update selectedPort when window is resized
   useEffect(() => {
     function handleResize() {
       setSelectedPort(getSelectedPort());
@@ -84,22 +78,17 @@ const Main = () => {
 
   return (
     <div className="h-screen grid grid-cols-[0%,100%] md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] overflow-hidden ">
-      {/* Selectors */}
       <div className="shadow-2xl overflow-y-auto p-2">
-        {/* Logo and Title */}
         <div className="h-20 w-full flex flex-row justify-center items-center gap-5">
           <img className="w-16 h-auto grayscale" src={logo} alt="ic-logo" />
           <h1 className="font-semibold text-xl text-center text-grey-0">Kigen Template Builder</h1>
         </div>
-        {/* Selector Container */}
         <div className="">
           {componentConstants.map((item, itemIdx) => {
-            // Returning all elements from componentConstants as Accordion
             return (
               <Accordion
                 title={item.title}
                 open={itemIdx === 0 ? true : false}
-                // Pass content to accordion
                 content={
                   <div className="flex flex-row flex-wrap gap-3 justify-center items-center p-4">
                     {item.titles.map((title, titleIdx) => {
@@ -107,7 +96,6 @@ const Main = () => {
                         <div
                           className="rounded-md shadow-lg bg-white grid items-center transition-shadow hover:cursor-pointer hover:drop-shadow-xl"
                           key={titleIdx}
-                          // Switching component states as user's changes
                           onClick={() => {
                             switch (itemIdx) {
                               case 0:
@@ -151,9 +139,7 @@ const Main = () => {
           })}
         </div>
       </div>
-      {/* Display */}
       <div className="h-full bg-white-10 p-2">
-        {/* Responsive Icons Container */}
         <div className="min-w-full h-20 bg-white rounded-md shadow-sm flex flex-row justify-center items-center gap-10">
           {iconList.map((icon, idx) => {
             return (
@@ -177,7 +163,6 @@ const Main = () => {
             );
           })}
         </div>
-        {/* Template Display */}
         <div
           className={`max-w-full h-[800px] no-scrollbar overflow-y-auto rounded-md border-2 mx-auto my-3 border-grey-50 border-dotted ${
             selectedPort === "tablet"
@@ -187,21 +172,13 @@ const Main = () => {
               : "w-auto"
           }`}
         >
-          {/* Header */}
           {selectedHeader}
-          {/* Home Page */}
           {selectedHomePage}
-          {/* Pricing */}
           {selectedPricing}
-          {/* About Us */}
           {selectedAboutUs}
-          {/* F.A.Q */}
           {selectedFaq}
-          {/* Gallery */}
           {selectedGallery}
-          {/* Testimonials */}
           {selectedTestimonial}
-          {/* Footer */}
           {selectedFooter}
         </div>
       </div>

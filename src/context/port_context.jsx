@@ -7,7 +7,6 @@ export const usePortContext = () => {
 };
 
 export const PortProvider = ({ children }) => {
-  // Default Value
   const [selectedPort, setSelectedPort] = useState("desktop");
 
   return (
