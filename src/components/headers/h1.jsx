@@ -16,17 +16,17 @@ const H1 = () => {
 
   return (
     <div
-      className={` bg-white h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
+      className={`sticky top-0 bg-white h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
         selectedPort === "desktop"
           ? "justify-between"
           : selectedPort === "mobile"
-          ? "fixed w-[395px] justify-start px-4"
+          ? "absolute w-[395px] justify-start px-4"
           : "justify-center"
       }`}
     >
       <div
-        className={`fixed flex flex-col gap-1 cursor-pointer ${
-          selectedPort === "mobile" ? "block" : "hidden"
+        className={`relative flex flex-col gap-1 cursor-pointer ${
+          selectedPort === "mobile" ? "block z-10" : "hidden"
         }`}
         onClick={handleSetMenuActive}
       >
@@ -56,14 +56,14 @@ const H1 = () => {
       </div>
       <div
         className={`${selectedPort === "mobile" ? !menuActive && "hidden" : "block"} ${
-          menuActive && "fixed"
+          menuActive && "absolute"
         }`}
       >
         <ul
           className={
             !menuActive
               ? "flex flex-row justify-around items-center font-semibold gap-3"
-              : "absolute max-h-[732px] left-[-16px] top-8 px-20 py-40 flex flex-col text-center bg-white font-semibold gap-14"
+              : "relative max-h-[732px] left-[-16px] top-[390px] px-20 py-40 flex flex-col text-center bg-white font-semibold gap-14"
           }
         >
           {headerConstants.map((title, idx) => {

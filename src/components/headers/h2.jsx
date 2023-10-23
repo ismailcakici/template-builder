@@ -16,11 +16,11 @@ const H2 = () => {
 
   return (
     <div
-      className={`bg-white h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
+      className={`sticky top-0 bg-white h-16 p-1 flex flex-row items-center shadow-xl px-16 z-10  ${
         selectedPort === "desktop"
           ? "justify-between"
           : selectedPort === "mobile"
-          ? "fixed w-[395px] justify-start px-4"
+          ? "absolute w-[395px] justify-start px-4"
           : "justify-evenly"
       }`}
     >
