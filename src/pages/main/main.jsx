@@ -5,9 +5,12 @@ import Accordion from "../../components/accordion/accordion";
 import { componentConstants } from "../../constants/components-constants/component_constants";
 import { devicePorts } from "../../constants/device_ports";
 import { usePortContext } from "../../context/port_context";
+import arrow from "../../assets/icons/arrow.png";
 
 const Main = () => {
   const { selectedPort, setSelectedPort } = usePortContext(getSelectedPort());
+  const [windowWidth, setWindowWidth] = useState(getWindowWidth);
+  const [menuActive, setMenuActive] = useState(false);
 
   const [selectedHeader, setSelectedHeader] = useState(null);
   const [selectedHomePage, setSelectedHomePage] = useState(null);
@@ -50,6 +53,10 @@ const Main = () => {
     setSelectedTestimonial(testimonial);
   };
 
+  const handleMenuActive = () => {
+    setMenuActive(!menuActive);
+  };
+
   const handleSetSelectedPort = (port) => {
     const windowWidth = window.innerWidth;
     if (port === devicePorts[0] && windowWidth <= 1500) {
@@ -72,25 +79,45 @@ const Main = () => {
     }
   }
 
+  function getWindowWidth() {
+    return window.innerWidth;
+  }
+
   useEffect(() => {
     function handleResize() {
       setSelectedPort(getSelectedPort());
+      setWindowWidth(getWindowWidth());
+      if (getWindowWidth() > 768) {
+        setMenuActive(false);
+      }
     }
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [setSelectedPort]);
+  }, [setSelectedPort, windowWidth]);
 
   return (
-    <div className="h-screen grid grid-cols-[0%,100%] md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] ">
+    <div
+      className={`h-screen grid md:grid-cols-[35%,65%] lg:grid-cols-[30%,70%] ${
+        menuActive ? "grid-cols-[100%,0%]" : "grid-cols-[0%,100%]"
+      }`}
+    >
+      <div
+        className={`z-10 opacity-50 hover:opacity-100 absolute left-0 top-1/2 bg-grey-50 shadow-lg cursor-pointer flex items-center justify-center rounded-r-xl w-6 h-16 ${
+          windowWidth <= 768 ? "block" : "hidden"
+        }`}
+        onClick={handleMenuActive}
+      >
+        <img className="-rotate-90" src={arrow} alt="menu-img" />
+      </div>
       <div className="shadow-2xl overflow-y-auto p-2">
         <div className="h-20 w-full flex flex-row justify-center items-center gap-5">
           <img className="w-16 h-auto grayscale" src={logo} alt="ic-logo" />
           <h1 className="font-semibold text-xl text-center text-grey-0">Kigen Template Builder</h1>
         </div>
-        <div className="">
+        <div className="p-5">
           {componentConstants.map((item, itemIdx) => {
             return (
               <Accordion
@@ -146,7 +173,7 @@ const Main = () => {
           })}
         </div>
       </div>
-      <div className="h-full bg-white-10 p-2">
+      <div className={`h-full bg-white-10 p-2 ${menuActive ? "hidden" : "block"}`}>
         <div className="min-w-full h-20 bg-white rounded-md shadow-sm flex flex-row justify-center items-center gap-10">
           {iconList.map((icon, idx) => {
             return (

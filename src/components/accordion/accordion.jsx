@@ -7,7 +7,7 @@ const Accordion = ({ title, content, open }) => {
   const handleIsOpen = () => setIsOpen(!isOpen);
 
   return (
-    <div className="w-full min-h-[30px] flex flex-col gap-3 bg-white-10 rounded-md shadow-lg p-1 my-5 hover:shadow-xl transition-all">
+    <div className="w-full min-h-[50px] flex flex-col gap-3 bg-white-10 rounded-md shadow-lg p-1 my-5 hover:shadow-xl transition-all">
       <div
         className="flex flex-row justify-between items-center p-1 cursor-pointer "
         onClick={handleIsOpen}
