@@ -51,7 +51,14 @@ const Main = () => {
   };
 
   const handleSetSelectedPort = (port) => {
-    setSelectedPort(port);
+    const windowWidth = window.innerWidth;
+    if (port === devicePorts[0] && windowWidth <= 1500) {
+      return;
+    } else if (port === devicePorts[1] && windowWidth <= 1200) {
+      return;
+    } else {
+      setSelectedPort(port);
+    }
   };
 
   function getSelectedPort() {
