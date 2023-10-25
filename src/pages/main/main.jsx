@@ -14,7 +14,7 @@ const Main = () => {
   const [menuActive, setMenuActive] = useState(false);
 
   const [selectedHeader, setSelectedHeader] = useState([]);
-  const [selectedOthers, setSelectedOthers] = useState([]);
+  const [selectedOthers, setSelectedOthers] = useState({});
   const [selectedFooter, setSelectedFooter] = useState([]);
   const [accordionItems, setAccordionItems] = useState(componentConstants);
 
@@ -26,7 +26,7 @@ const Main = () => {
     } else {
       setSelectedOthers((prevComps) => ({
         ...prevComps,
-        [compType]: [comp],
+        [compType]: comp,
       }));
     }
   };
@@ -66,9 +66,24 @@ const Main = () => {
       return;
     }
 
+    const sourceIndex = result.source.index;
+    const destinationIndex = result.destination.index;
+
+    const sourceItem = accordionItems[sourceIndex];
+    const destinationItem = accordionItems[destinationIndex];
+
+    if (
+      sourceItem.title === "Headers" ||
+      destinationItem.title === "Headers" ||
+      sourceItem.title === "Footers" ||
+      destinationItem.title === "Footers"
+    ) {
+      return;
+    }
+
     const reorderedItems = Array.from(accordionItems);
-    const [movedItem] = reorderedItems.splice(result.source.index, 1);
-    reorderedItems.splice(result.destination.index, 0, movedItem);
+    const [movedItem] = reorderedItems.splice(sourceIndex, 1);
+    reorderedItems.splice(destinationIndex, 0, movedItem);
 
     setAccordionItems(reorderedItems);
   };
@@ -102,7 +117,7 @@ const Main = () => {
       >
         <img className="-rotate-90" src={arrow} alt="menu-img" />
       </div>
-      <div className="shadow-2xl overflow-y-auto p-2">
+      <div className="shadow-2xl overflow-y-scroll p-2">
         <div className="h-20 w-full flex flex-row justify-center items-center gap-5">
           <img className="w-16 h-auto grayscale" src={logo} alt="ic-logo" />
           <h1 className="font-semibold text-xl text-center text-grey-0">Kigen Template Builder</h1>
@@ -113,7 +128,12 @@ const Main = () => {
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {accordionItems.map((item, index) => (
-                    <Draggable key={item.title} draggableId={item.title} index={index}>
+                    <Draggable
+                      key={item.title}
+                      draggableId={item.title}
+                      index={index}
+                      isDragDisabled={item.title === "Headers" || item.title === "Footers"}
+                    >
                       {(provided) => (
                         <div
                           ref={provided.innerRef}
@@ -122,13 +142,24 @@ const Main = () => {
                         >
                           <Accordion
                             title={item.title}
-                            open={false}
+                            open={index === 0 && true}
                             content={
                               <div className="flex flex-row flex-wrap gap-3 justify-center items-center p-4">
                                 {item.titles.map((title, titleIdx) => {
+                                  const isHeaderSelected =
+                                    selectedHeader === item.components[titleIdx];
+                                  const isFooterSelected =
+                                    selectedFooter === item.components[titleIdx];
+                                  const isItemSelected =
+                                    selectedOthers[item.title] === item.components[titleIdx];
+
                                   return (
                                     <div
-                                      className="rounded-md shadow-lg bg-white grid items-center transition-shadow hover:cursor-pointer hover:drop-shadow-xl"
+                                      className={`rounded-md shadow-lg bg-white grid items-center transition-shadow hover:cursor-pointer hover:drop-shadow-xl ${
+                                        isItemSelected || isHeaderSelected || isFooterSelected
+                                          ? "border-2 border-grey-30 border-dotted"
+                                          : ""
+                                      }`}
                                       key={titleIdx}
                                       onClick={() => {
                                         handleSelectedComponents(
@@ -192,9 +223,11 @@ const Main = () => {
           }`}
         >
           {selectedHeader}
-          {Object.values(selectedOthers).map((comp, idx) => {
-            return <div key={idx}>{comp}</div>;
-          })}
+          {accordionItems.map((item, idx) => (
+            <div key={idx}>
+              <div>{selectedOthers[item.title]}</div>
+            </div>
+          ))}
           {selectedFooter}
         </div>
       </div>
