@@ -1,8 +1,8 @@
 import React from "react";
-import { usePortContext } from "../../context/port_context";
+import { useGlobalContext } from "../../context/global_context";
 
 const PricingContainer = ({ price, title }) => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort } = useGlobalContext();
   return (
     <div
       className={`bg-grey-70 cursor-pointer border-grey-30 border rounded-md  flex flex-col items-center py-3 drop-shadow-xl transition-all hover:scale-105 hover:drop-shadow-2xl ${

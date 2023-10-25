@@ -1,9 +1,9 @@
 import React from "react";
-import { usePortContext } from "../../context/port_context";
+import { useGlobalContext } from "../../context/global_context";
 import bgImage from "../../assets/images/background2.jpg";
 
 const HP2 = () => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort, title, slogan } = useGlobalContext();
 
   return (
     <div className="w-full h-[600px] relative">
@@ -18,14 +18,14 @@ const HP2 = () => {
             selectedPort === "mobile" ? "text-5xl" : "text-6xl "
           }`}
         >
-          Your Title Here
+          {title}
         </span>
         <span
           className={`text-white text-center  font-semibold my-2 ${
             selectedPort === "mobile" ? "text-xl" : "text-4xl"
           }`}
         >
-          Your Slogan Here
+          {slogan}
         </span>
         <div className="flex flex-row justify-around w-full gap-2">
           <button

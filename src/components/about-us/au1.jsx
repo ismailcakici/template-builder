@@ -1,9 +1,9 @@
 import React from "react";
 import bgImage from "../../assets/images/background.png";
-import { usePortContext } from "../../context/port_context";
+import { useGlobalContext } from "../../context/global_context";
 
 const AU1 = () => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort, aboutUs } = useGlobalContext();
   return (
     <div className=" relative w-full min-h-[600px] flex flex-col items-center justify-evenly">
       <img
@@ -17,10 +17,7 @@ const AU1 = () => {
         >
           About Us
         </h1>
-        <p className="leading-10 text-white text-center font-semibold text-2xl ">
-          Welcome to [Your Title]! We are a passionate team dedicated to [Your company mission]. Our
-          journey began with a you.
-        </p>
+        <p className="leading-10 text-white text-center font-semibold text-2xl ">{aboutUs}</p>
       </div>
     </div>
   );

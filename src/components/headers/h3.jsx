@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/icons/logo-sm.png";
-import { usePortContext } from "../../context/port_context";
-import { headerConstants } from "../../constants/header-constants/header_constants";
+import { useGlobalContext } from "../../context/global_context";
 
 const H3 = () => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort, headerTitles } = useGlobalContext();
 
   const [menuActive, setMenuActive] = useState(false);
 
@@ -56,17 +55,17 @@ const H3 = () => {
       </div>
       <div
         className={`${selectedPort === "mobile" ? !menuActive && "hidden" : "block"} ${
-          menuActive && "absolute"
+          menuActive && "absolute h-[30px]"
         }`}
       >
         <ul
           className={
             !menuActive
               ? "flex flex-row justify-around items-center font-semibold gap-3"
-              : "relative max-h-[732px] left-[20px] top-[390px] px-20 py-40 gap-14 flex flex-col text-center font-semibold bg-white"
+              : "relative max-h-[732px] left-[20px] top-8 px-20 py-5 gap-12 flex flex-col text-center font-semibold bg-white"
           }
         >
-          {headerConstants.map((title, idx) => {
+          {headerTitles.map((title, idx) => {
             return (
               <li className="cursor-pointer hover:text-grey-50" key={idx}>
                 {title}

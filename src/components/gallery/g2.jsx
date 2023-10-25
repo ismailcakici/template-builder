@@ -1,9 +1,9 @@
 import React from "react";
 import { slides } from "../../constants/gallery-constants/gallery_constants";
-import { usePortContext } from "../../context/port_context";
+import { useGlobalContext } from "../../context/global_context";
 
 const G2 = () => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort } = useGlobalContext();
 
   return (
     <div

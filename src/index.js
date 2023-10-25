@@ -3,10 +3,10 @@ import React from "react";
 import routes from "./routes/routes";
 import "./assets/css/tailwind.css";
 import { RouterProvider } from "react-router-dom";
-import { PortProvider } from "./context/port_context";
+import { GlobalContextProvider } from "./context/global_context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <PortProvider>
+  <GlobalContextProvider>
     <RouterProvider router={routes} />
-  </PortProvider>
+  </GlobalContextProvider>
 );

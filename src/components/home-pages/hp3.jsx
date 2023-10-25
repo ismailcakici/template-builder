@@ -1,9 +1,9 @@
 import React from "react";
-import { usePortContext } from "../../context/port_context";
+import { useGlobalContext } from "../../context/global_context";
 import homePageBgImg from "../../assets/images/background2.jpg";
 
 const HP3 = () => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort, title, slogan } = useGlobalContext();
 
   return (
     <div className="w-full h-[600px] bg-grey-70 flex flex-row-reverse justify-around items-center flex-wrap-reverse">
@@ -13,7 +13,7 @@ const HP3 = () => {
             selectedPort === "mobile" ? "text-5xl" : "text-6xl "
           }`}
         >
-          Your Title Here
+          {title}
         </span>
         <span
           className={`text-center font-semibold my-3 text-grey-0 ${
@@ -21,7 +21,7 @@ const HP3 = () => {
           }
           `}
         >
-          Your Slogan Here
+          {slogan}
         </span>
         <div className="flex flex-row justify-around">
           <button

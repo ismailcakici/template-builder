@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/icons/logo-sm.png";
-import { usePortContext } from "../../context/port_context";
-import { headerConstants } from "../../constants/header-constants/header_constants";
+import { useGlobalContext } from "../../context/global_context";
 
 const H2 = () => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort, headerTitles } = useGlobalContext();
 
   const [menuActive, setMenuActive] = useState(false);
 
@@ -26,7 +25,7 @@ const H2 = () => {
     >
       {selectedPort !== "mobile" && (
         <div className="flex items-center gap-4 font-semibold">
-          {headerConstants.slice(0, 3).map((title, idx) => (
+          {headerTitles.slice(0, 3).map((title, idx) => (
             <div className="cursor-pointer hover:text-grey-50" key={idx}>
               {title}
             </div>
@@ -41,7 +40,7 @@ const H2 = () => {
 
       {selectedPort !== "mobile" && (
         <div className="flex items-center gap-4 font-semibold">
-          {headerConstants.slice(3).map((title, idx) => (
+          {headerTitles.slice(3).map((title, idx) => (
             <div className="cursor-pointer hover:text-grey-50" key={idx}>
               {title}
             </div>
@@ -71,8 +70,8 @@ const H2 = () => {
 
       {selectedPort === "mobile" && menuActive && (
         <div className="relative">
-          <ul className="absolute max-h-[732px] left-[-48px] top-8 px-20 py-40 gap-14 flex flex-col text-center bg-white font-semibold z-10">
-            {headerConstants.map((title, idx) => (
+          <ul className="absolute max-h-[732px] left-[-48px] top-8 px-20 py-5 gap-12 flex flex-col items-center justify-start text-center bg-white font-semibold z-10">
+            {headerTitles.map((title, idx) => (
               <li className="cursor-pointer hover:text-grey-50" key={idx}>
                 {title}
               </li>

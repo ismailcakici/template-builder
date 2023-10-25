@@ -1,9 +1,9 @@
 import React from "react";
 import { pricingConstants } from "../../constants/pricing/pricing_constants";
-import { usePortContext } from "../../context/port_context";
+import { useGlobalContext } from "../../context/global_context";
 
 const P2 = () => {
-  const { selectedPort } = usePortContext();
+  const { selectedPort } = useGlobalContext();
   return (
     <div className="w-full min-h-[600px] bg-white grid items-center justify-center p-5">
       <table className="border-separate border border-slate-500">
