@@ -5,6 +5,7 @@ import Accordion from "../../components/accordion/accordion";
 import { componentConstants } from "../../constants/components-constants/component_constants";
 import { devicePorts } from "../../constants/device_ports";
 import { usePortContext } from "../../context/port_context";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import arrow from "../../assets/icons/arrow.png";
 
 const Main = () => {
@@ -12,45 +13,22 @@ const Main = () => {
   const [windowWidth, setWindowWidth] = useState(getWindowWidth);
   const [menuActive, setMenuActive] = useState(false);
 
-  const [selectedHeader, setSelectedHeader] = useState(null);
-  const [selectedHomePage, setSelectedHomePage] = useState(null);
-  const [selectedPricing, setSelectedPricing] = useState(null);
-  const [selectedFooter, setSelectedFooter] = useState(null);
-  const [selectedFaq, setSelectedFaq] = useState(null);
-  const [selectedGallery, setSelectedGallery] = useState(null);
-  const [selectedAboutUs, setSelectedAboutUs] = useState(null);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
+  const [selectedHeader, setSelectedHeader] = useState([]);
+  const [selectedOthers, setSelectedOthers] = useState([]);
+  const [selectedFooter, setSelectedFooter] = useState([]);
+  const [accordionItems, setAccordionItems] = useState(componentConstants);
 
-  const handleSelectedHeader = (header) => {
-    setSelectedHeader(header);
-  };
-
-  const handleSelectedHomePage = (homePage) => {
-    setSelectedHomePage(homePage);
-  };
-
-  const handleSelectedFooter = (footer) => {
-    setSelectedFooter(footer);
-  };
-
-  const handleSelectedPricing = (pricing) => {
-    setSelectedPricing(pricing);
-  };
-
-  const handleSelectedAboutUs = (aboutUs) => {
-    setSelectedAboutUs(aboutUs);
-  };
-
-  const handleSelectedFaq = (faq) => {
-    setSelectedFaq(faq);
-  };
-
-  const handleSelectedGallery = (gallery) => {
-    setSelectedGallery(gallery);
-  };
-
-  const handleSelectedTestimonial = (testimonial) => {
-    setSelectedTestimonial(testimonial);
+  const handleSelectedComponents = (compType, comp) => {
+    if (compType === "Headers") {
+      setSelectedHeader(comp);
+    } else if (compType === "Footers") {
+      setSelectedFooter(comp);
+    } else {
+      setSelectedOthers((prevComps) => ({
+        ...prevComps,
+        [compType]: [comp],
+      }));
+    }
   };
 
   const handleMenuActive = () => {
@@ -82,6 +60,18 @@ const Main = () => {
   function getWindowWidth() {
     return window.innerWidth;
   }
+
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const reorderedItems = Array.from(accordionItems);
+    const [movedItem] = reorderedItems.splice(result.source.index, 1);
+    reorderedItems.splice(result.destination.index, 0, movedItem);
+
+    setAccordionItems(reorderedItems);
+  };
 
   useEffect(() => {
     function handleResize() {
@@ -118,59 +108,54 @@ const Main = () => {
           <h1 className="font-semibold text-xl text-center text-grey-0">Kigen Template Builder</h1>
         </div>
         <div className="p-5">
-          {componentConstants.map((item, itemIdx) => {
-            return (
-              <Accordion
-                title={item.title}
-                open={itemIdx === 0 ? true : false}
-                content={
-                  <div className="flex flex-row flex-wrap gap-3 justify-center items-center p-4">
-                    {item.titles.map((title, titleIdx) => {
-                      return (
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="accordion">
+              {(provided) => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                  {accordionItems.map((item, index) => (
+                    <Draggable key={item.title} draggableId={item.title} index={index}>
+                      {(provided) => (
                         <div
-                          className="rounded-md shadow-lg bg-white grid items-center transition-shadow hover:cursor-pointer hover:drop-shadow-xl"
-                          key={titleIdx}
-                          onClick={() => {
-                            switch (itemIdx) {
-                              case 0:
-                                handleSelectedHeader(item.components[titleIdx]);
-                                break;
-                              case 1:
-                                handleSelectedHomePage(item.components[titleIdx]);
-                                break;
-                              case 2:
-                                handleSelectedPricing(item.components[titleIdx]);
-                                break;
-                              case 3:
-                                handleSelectedAboutUs(item.components[titleIdx]);
-                                break;
-                              case 4:
-                                handleSelectedFaq(item.components[titleIdx]);
-                                break;
-                              case 5:
-                                handleSelectedGallery(item.components[titleIdx]);
-                                break;
-                              case 6:
-                                handleSelectedTestimonial(item.components[titleIdx]);
-                                break;
-                              case 7:
-                                handleSelectedFooter(item.components[titleIdx]);
-                                break;
-                              default:
-                                break;
-                            }
-                          }}
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
                         >
-                          <img src={item.images[titleIdx]} alt={item.titles[titleIdx]} />
+                          <Accordion
+                            title={item.title}
+                            open={false}
+                            content={
+                              <div className="flex flex-row flex-wrap gap-3 justify-center items-center p-4">
+                                {item.titles.map((title, titleIdx) => {
+                                  return (
+                                    <div
+                                      className="rounded-md shadow-lg bg-white grid items-center transition-shadow hover:cursor-pointer hover:drop-shadow-xl"
+                                      key={titleIdx}
+                                      onClick={() => {
+                                        handleSelectedComponents(
+                                          item.title,
+                                          item.components[titleIdx]
+                                        );
+                                      }}
+                                    >
+                                      <img
+                                        src={item.images[titleIdx]}
+                                        alt={item.titles[titleIdx]}
+                                      />
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            }
+                            key={index}
+                          />
                         </div>
-                      );
-                    })}
-                  </div>
-                }
-                key={itemIdx}
-              />
-            );
-          })}
+                      )}
+                    </Draggable>
+                  ))}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
       <div className={`h-full bg-white-10 p-2 ${menuActive ? "hidden" : "block"}`}>
@@ -207,12 +192,9 @@ const Main = () => {
           }`}
         >
           {selectedHeader}
-          {selectedHomePage}
-          {selectedPricing}
-          {selectedAboutUs}
-          {selectedFaq}
-          {selectedGallery}
-          {selectedTestimonial}
+          {Object.values(selectedOthers).map((comp, idx) => {
+            return <div key={idx}>{comp}</div>;
+          })}
           {selectedFooter}
         </div>
       </div>
