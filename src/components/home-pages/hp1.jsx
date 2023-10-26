@@ -31,13 +31,6 @@ const HP1 = () => {
           >
             Explore
           </button>
-          <button
-            className={`self-center  bg-white-10 shadow-lg rounded-md my-5 font-semibold transition-all hover:bg-grey-0 hover:text-white-10 ${
-              selectedPort === "mobile" ? "w-32 h-12" : "w-36 h-16"
-            }`}
-          >
-            See More
-          </button>
         </div>
       </div>
       <div className="w-[500px] h-[300px] rounded-md p-1">
