@@ -28,7 +28,7 @@ const Main = () => {
 
   const [windowWidth, setWindowWidth] = useState(getWindowWidth);
   const [menuActive, setMenuActive] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [selectedHeader, setSelectedHeader] = useState([]);
   const [selectedOthers, setSelectedOthers] = useState({});
   const [selectedFooter, setSelectedFooter] = useState([]);
