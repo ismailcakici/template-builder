@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import bgImage from "../../assets/images/background.png";
 import { useGlobalContext } from "../../context/global_context";
 
 const AU1 = () => {
-  const { selectedPort, aboutUs } = useGlobalContext();
+  const { selectedPort, aboutUs, setAboutUs } = useGlobalContext();
+  const tempAboutUs = "Click here to change your About Us text.";
+  const textareaRef = useRef(null);
+
+  const handleTextareaInput = () => {
+    const textarea = textareaRef.current;
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  };
+
+  useEffect(() => {
+    handleTextareaInput();
+  }, [selectedPort, aboutUs]);
+
   return (
     <div className=" relative w-full min-h-[600px] flex flex-col items-center justify-evenly">
       <img
@@ -17,7 +30,18 @@ const AU1 = () => {
         >
           About Us
         </h1>
-        <p className="leading-10 text-white text-center font-semibold text-2xl ">{aboutUs}</p>
+        <textarea
+          onChange={(e) => {
+            setAboutUs(e.target.value);
+            handleTextareaInput();
+          }}
+          onInput={handleTextareaInput}
+          value={aboutUs === "" ? tempAboutUs : aboutUs}
+          ref={textareaRef}
+          className="leading-10 p-2 h-auto resize-none w-full overflow-hidden bg-white bg-opacity-0 hover:border-2 border-dotted border-white-10 text-white text-center font-semibold text-2xl"
+          name="aboutUs1"
+          id="aboutUs1"
+        ></textarea>
       </div>
     </div>
   );
