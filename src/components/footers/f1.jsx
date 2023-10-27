@@ -1,20 +1,21 @@
 import React from "react";
 import map from "../../assets/images/map.jpg";
+import { useGlobalContext } from "../../context/global_context";
 
 const F1 = () => {
+  const { headerTitles } = useGlobalContext();
+
   return (
-    <div className="relative w-full min-h-[600px] pb-5 bg-grey-0 flex flex-row flex-wrap justify-around items-center">
+    <div className="relative w-full min-h-[600px] py-3 bg-grey-0 flex flex-row flex-wrap justify-around items-center">
       <div className="w-[400px] h-auto mx-2 overflow-hidden rounded-md hover:cursor-pointer">
         <img className="object-cover hover:scale-110 transition-all" src={map} alt="map-img" />
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 my-1">
         <p className="text-xl text-white-10 font-semibold">Site Navigation</p>
-        <div className="flex flex-col gap-2 text-grey-50 hover:cursor-pointer ">
-          <p>Home</p>
-          <p>About Us</p>
-          <p>Gallery</p>
-          <p>Testimonials</p>
-          <p>Pricing</p>
+        <div className="flex flex-col gap-2 mb-10 text-grey-50 hover:cursor-pointer ">
+          {headerTitles.map((title, idx) => {
+            return <p key={idx}>{title}</p>;
+          })}
         </div>
       </div>
       <div className="flex flex-col gap-5">

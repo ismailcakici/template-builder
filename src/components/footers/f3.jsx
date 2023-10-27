@@ -1,12 +1,15 @@
 import React from "react";
 import { socialIconsList } from "../../constants/socails_icon_list";
+import { useGlobalContext } from "../../context/global_context";
 
 const F3 = () => {
+  const { title, slogan } = useGlobalContext();
+
   return (
     <div className="relative w-full min-h-[400px] pb-5 bg-grey-0 flex flex-row flex-wrap justify-around items-center">
       <div className="flex flex-col gap-5 text-white-10 text-center text-4xl font-bold">
-        <p>Your Title</p>
-        <p>Your Slogan Here</p>
+        <p>{title}</p>
+        <p>{slogan}</p>
       </div>
 
       <div className="absolute bottom-2 my-3 text-grey-30 flex flex-row flex-wrap text-center justify-evenly items-center">

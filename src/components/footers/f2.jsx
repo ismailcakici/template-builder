@@ -1,21 +1,22 @@
 import React from "react";
 import { socialIconsList } from "../../constants/socails_icon_list";
+import { useGlobalContext } from "../../context/global_context";
 
 const F2 = () => {
+  const { title, slogan, headerTitles } = useGlobalContext();
+
   return (
     <div className="relative w-full min-h-[600px] pb-5 bg-grey-0 flex flex-row flex-wrap justify-around items-center">
-      <div className="flex flex-col gap-5 text-white-10 text-center text-4xl font-bold">
-        <p>Your Title</p>
-        <p>Your Slogan Here</p>
+      <div className="flex-col max-w-xs gap-5 text-white-10 text-center text-4xl font-bold">
+        <p>{title}</p>
+        <p>{slogan}</p>
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 my-1">
         <p className="text-xl text-white-10 font-semibold">Site Navigation</p>
-        <div className="flex flex-col gap-2 text-grey-50 hover:cursor-pointer ">
-          <p>Home</p>
-          <p>About Us</p>
-          <p>Gallery</p>
-          <p>Testimonials</p>
-          <p>Pricing</p>
+        <div className="flex flex-col gap-2 mb-10 text-grey-50 hover:cursor-pointer ">
+          {headerTitles.map((title, idx) => {
+            return <p key={idx}>{title}</p>;
+          })}
         </div>
       </div>
       <div className="flex flex-col gap-5">
