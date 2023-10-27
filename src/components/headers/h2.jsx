@@ -3,9 +3,11 @@ import logo from "../../assets/icons/logo-sm.png";
 import { useGlobalContext } from "../../context/global_context";
 
 const H2 = () => {
-  const { selectedPort, headerTitles } = useGlobalContext();
+  const { selectedPort, headerTitles, headerLogo, setHeaderLogo } = useGlobalContext();
 
   const [menuActive, setMenuActive] = useState(false);
+
+  const tempLogoText = "LOGO";
 
   const handleSetMenuActive = () => setMenuActive(!menuActive);
 
@@ -35,7 +37,19 @@ const H2 = () => {
 
       <div className={`flex items-center gap-4 ${selectedPort === "mobile" && "hidden"}`}>
         <img className="w-12 h-12 grayscale cursor-pointer" src={logo} alt="ic-logo" />
-        <p className="text-grey-0 font-semibold text-lg">LOGO</p>
+        <input
+          name="logoText-h3"
+          id="logoText-h3"
+          type="text"
+          maxLength={15}
+          onChange={(e) => {
+            setHeaderLogo(e.target.value);
+          }}
+          defaultValue={headerLogo === "" ? tempLogoText : headerLogo}
+          className={`w-36 font-semibold text-xl mx-0 text-center bg-white bg-opacity-0 text-grey-0 hover:border-2 border-dotted border-grey-0 ${
+            selectedPort === "mobile" ? "text-5xl" : "text-6xl "
+          }`}
+        ></input>{" "}
       </div>
 
       {selectedPort !== "mobile" && (

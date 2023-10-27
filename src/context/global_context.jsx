@@ -9,6 +9,7 @@ export const useGlobalContext = () => {
 export const GlobalContextProvider = ({ children }) => {
   const [selectedPort, setSelectedPort] = useState("desktop");
   const [headerTitles, setHeaderTitles] = useState([]);
+  const [headerLogo, setHeaderLogo] = useState("");
   const [title, setTitle] = useState("");
   const [slogan, setSlogan] = useState("");
   const [aboutUs, setAboutUs] = useState("");
@@ -41,6 +42,8 @@ export const GlobalContextProvider = ({ children }) => {
         setSlogan,
         aboutUs,
         setAboutUs,
+        headerLogo,
+        setHeaderLogo,
       }}
     >
       {children}
