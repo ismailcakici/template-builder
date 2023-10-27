@@ -36,7 +36,7 @@ const AU1 = () => {
             handleTextareaInput();
           }}
           onInput={handleTextareaInput}
-          value={aboutUs === "" ? tempAboutUs : aboutUs}
+          defaultValue={aboutUs === "" ? tempAboutUs : aboutUs}
           ref={textareaRef}
           className="leading-10 p-2 h-auto resize-none w-full overflow-hidden bg-white bg-opacity-0 hover:border-2 border-dotted border-white-10 text-white text-center font-semibold text-2xl"
           name="aboutUs1"
