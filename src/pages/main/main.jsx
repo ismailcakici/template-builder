@@ -7,7 +7,7 @@ import { componentConstants } from "../../constants/components-constants/compone
 import { devicePorts } from "../../constants/device_ports";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { headerConstants } from "../../constants/header-constants/header_constants";
-import edit from "../../assets/icons/edit.png";
+import add from "../../assets/icons/add.png";
 import Modal from "../../components/modal/modal";
 import arrow from "../../assets/icons/arrow.png";
 
@@ -18,12 +18,6 @@ const Main = () => {
     headerTitles,
     handleSetHeaderTitles,
     removeTitleFromHeaders,
-    title,
-    setTitle,
-    slogan,
-    setSlogan,
-    aboutUs,
-    setAboutUs,
   } = useGlobalContext(getSelectedPort());
 
   const [windowWidth, setWindowWidth] = useState(getWindowWidth);
@@ -139,11 +133,11 @@ const Main = () => {
               Kigen Template Builder
             </h1>
             <img
-              className="w-10 hover:cursor-pointer hover:bg-grey-70 p-1 bg-white-10 rounded-full transition-all"
+              className="w-10 hover:cursor-pointer hover:rotate-180 hover:bg-grey-70 p-1 bg-white-10 rounded-full transition-all"
               onClick={() => {
                 setOpenModal(true);
               }}
-              src={edit}
+              src={add}
               alt="edit-ic"
             />
           </div>
@@ -259,10 +253,9 @@ const Main = () => {
       </div>
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
         <div className="py-3 px-5 my-3 text-xl text-grey-0 font-semibold text-center">
-          Let's gather the necessary information before we started.
+          Choose the header titles do you want.
         </div>
         <div className="w-full p-3 flex flex-col justify-center gap-5">
-          <div className="text-xl">First, choose the header titles you want.</div>
           <div className="flex flex-row flex-wrap justify-around items-center gap-1 p-1">
             {headerConstants.map((title, idx) => {
               const include = headerTitles.includes(title);
@@ -283,65 +276,6 @@ const Main = () => {
             })}
           </div>
         </div>
-        <div className="w-full p-3 flex flex-col justify-center gap-5">
-          <div className="text-xl">Now we can get your business title and slogan.</div>
-        </div>
-        <div className="w-full p-3 flex flex-row flex-wrap justify-start gap-5">
-          <div className="flex flex-col">
-            <label className="text-xl my-1" htmlFor="title">
-              Title
-            </label>
-            <input
-              className="border rounded-lg text-lg font-semibold py-1 px-2"
-              type="text"
-              name="title"
-              id="title"
-              maxLength={25}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-xl my-1" htmlFor="slogan">
-              Slogan
-            </label>
-            <input
-              className="border rounded-lg text-lg font-semibold py-1 px-2"
-              type="text"
-              name="slogan"
-              id="slogan"
-              maxLength={55}
-              value={slogan}
-              onChange={(e) => setSlogan(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="w-full p-3 flex flex-col justify-center gap-5">
-          <div className="text-xl">
-            Let's get some more detailed information about your business.
-          </div>
-        </div>
-        <div className="w-full p-3 flex flex-row flex-wrap justify-start gap-5">
-          <label className="text-xl my-1" htmlFor="about">
-            About Us
-          </label>
-          <textarea
-            className="border rounded-lg text-lg font-semibold py-1 px-2 w-full"
-            name="about"
-            id="about"
-            rows="5"
-            value={aboutUs}
-            onChange={(e) => setAboutUs(e.target.value)}
-          ></textarea>
-        </div>
-        <button
-          className="bg-grey-70 px-4 py-2 rounded-lg mx-3 my-1 hover:bg-grey-50"
-          onClick={() => {
-            setOpenModal(false);
-          }}
-        >
-          Kaydet
-        </button>
       </Modal>
     </>
   );

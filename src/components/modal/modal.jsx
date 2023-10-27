@@ -8,7 +8,7 @@ export default function Modal({ open, onClose, children }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`max-h-[700px] overflow-y-scroll bg-white rounded-xl shadow  p-6 transition-all ${
+        className={`max-h-[700px] bg-white rounded-xl shadow  p-6 transition-all ${
           open ? "scale-100 opacity-100" : "scale-125 opacity-0"
         }`}
       >
