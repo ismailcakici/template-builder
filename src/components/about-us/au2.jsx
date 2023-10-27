@@ -35,7 +35,7 @@ const AU2 = () => {
             setAboutUs(e.target.value);
             handleTextareaInput();
           }}
-          value={aboutUs === "" ? tempAboutUs : aboutUs}
+          defaultValue={aboutUs === "" ? tempAboutUs : aboutUs}
           onInput={handleTextareaInput}
           ref={textareaRef}
           className="leading-10 p-2 h-auto resize-none w-full overflow-hidden bg-white bg-opacity-0 hover:border-2 border-dotted border-grey-0 text-grey-0 text-center font-semibold text-2xl"
