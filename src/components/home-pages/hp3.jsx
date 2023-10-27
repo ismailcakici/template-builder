@@ -17,7 +17,7 @@ const HP3 = () => {
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-          defaultValue={title === "" ? tempTitle : title}
+          value={title === "" ? tempTitle : title}
           className={`font-bold text-center bg-white bg-opacity-0 text-grey-0 hover:border-2 border-dotted border-grey-0 ${
             selectedPort === "mobile" ? "text-5xl" : "text-6xl "
           }`}
@@ -30,7 +30,7 @@ const HP3 = () => {
           onChange={(e) => {
             setSlogan(e.target.value);
           }}
-          defaultValue={slogan === "" ? tempSlogan : slogan}
+          value={slogan === "" ? tempSlogan : slogan}
           className={`text-center bg-white bg-opacity-0 font-semibold my-3 hover:border-2 border-dotted  text-grey-0 ${
             selectedPort === "mobile" ? "text-md" : "text-xl"
           }
